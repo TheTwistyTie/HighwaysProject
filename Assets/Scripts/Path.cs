@@ -6,18 +6,20 @@ using BansheeGz.BGSpline.Components;
 public class Path
 {
 
+    GameManager game;
+
     public GameObject gameObject;
     public BGCurve curve;
     public BGCcCollider3DBox collider;
     public BGCcVisualizationLineRenderer renderer;
-    public PathController controller;
 
     public int index;
 
-    public Path(Vector3 pos, int index)
+    public Path(Vector3 pos, GameManager game, int index = 0)
     {
 
         this.index = index;
+        this.game = game;
 
         gameObject = new GameObject();
         gameObject.transform.position = pos;
@@ -27,19 +29,25 @@ public class Path
 
         gameObject.AddComponent<BGCcCollider3DBox>();
         collider = gameObject.GetComponent<BGCcCollider3DBox>();
-
-        gameObject.AddComponent<BGCcVisualizationLineRenderer>();
         renderer = gameObject.AddComponent<BGCcVisualizationLineRenderer>();
 
-        gameObject.AddComponent<PathController>();
-        controller = gameObject.GetComponent<PathController>();
-        controller.path = this;
+        SetActive();
 
     }
 
     public void SetParent(Transform t)
     {
         gameObject.transform.SetParent(t);
+    }
+
+    void SetActive()
+    {
+        game.ActivePath = this;
+    }
+
+    public bool IsEqual(Path x)
+    {
+        return x.gameObject.Equals(gameObject) && x.curve == curve && x.index == index;
     }
 }
 
