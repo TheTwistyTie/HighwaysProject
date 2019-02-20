@@ -1,19 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BansheeGz.BGSpline.Curve;
 
 public class GameManager : MonoBehaviour
 {
 
-    // Use this for initialization
-    void Start()
+    List<Path> paths = new List<Path>();
+
+    void CreateNewPath(Vector3 pos)
     {
+
+        paths.Add(new Path(pos));
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

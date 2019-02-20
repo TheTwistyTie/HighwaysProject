@@ -56,7 +56,7 @@ namespace BansheeGz.BGSpline.Editor
 
         private static string GetFullPath(string dir, string asset)
         {
-            return dir + Path.DirectorySeparatorChar + asset + ".asset";
+            return dir + System.IO.Path.DirectorySeparatorChar + asset + ".asset";
         }
 
         private static string ChoseFolder()
@@ -121,11 +121,11 @@ namespace BansheeGz.BGSpline.Editor
                 foreach (var guid in guids)
                 {
                     var assetPath = AssetDatabase.GUIDToAssetPath(guid);
-                    var separatorIndex = assetPath.LastIndexOf(Path.DirectorySeparatorChar);
+                    var separatorIndex = assetPath.LastIndexOf(System.IO.Path.DirectorySeparatorChar);
 
                     if (separatorIndex > 0) assetPath = assetPath.Substring(separatorIndex + 1);
 
-                    separatorIndex = assetPath.LastIndexOf(Path.AltDirectorySeparatorChar);
+                    separatorIndex = assetPath.LastIndexOf(System.IO.Path.AltDirectorySeparatorChar);
 
                     if (separatorIndex > 0) assetPath = assetPath.Substring(separatorIndex + 1);
 
